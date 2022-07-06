@@ -16,16 +16,22 @@ const io = socketio(server, {
 app.use(router);
 
 io.on("connection", (socket) => {
-  console.log("New Connection", socket.id);
+  console.log("New Connection ->", socket.id);
 
-  socket.on("join", (joiner, callback) => {
-    console.log(joiner);
+  socket.on("join", ({ name, room }, callback) => {
+    let { user, error } = addUser({ id: socket.id, name, room });
 
-    let { user, error } = addUser({ id: socket.id, name: joiner.name, room: joiner.room });
     if (error) return callback(error);
 
-    socket.emit("welcomeMessage", { user: "Admin", message: `${user.name}, Welcome to the Room ${user.room}` });
-    socket.broadcast.to(user.room).emit("welcomeMessage", { user: "Admin", message: `${user.name} has joined!` });
+    socket.emit("welcomeMessage", {
+      user: "Admin",
+      message: `${user.name}, Welcome to the Room ${user.room}`,
+    });
+
+    socket.broadcast.to(user.room).emit("welcomeMessage", {
+      user: "Admin",
+      message: `${user.name} has joined!`,
+    });
 
     socket.join(user.room);
 

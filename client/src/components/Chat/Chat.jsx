@@ -34,9 +34,10 @@ function Chat() {
 
   useEffect(() => {
     socket.on("welcomeMessage", (message) => {
+      console.log(message);
       setMessages([...messages, message]);
     });
-  }, [messages]);
+  });
 
   let sendMessage = (e) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ function Chat() {
     }
   };
 
-  console.log({ name, room, message, messages });
+  // console.log({ name, room, message, messages });
 
   return (
     <div className="outerContainer">
