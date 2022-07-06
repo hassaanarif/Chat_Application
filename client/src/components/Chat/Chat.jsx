@@ -5,7 +5,7 @@ import io from "socket.io-client";
 
 let socket;
 
-function Chat(props) {
+function Chat() {
   let [name, setName] = useState("");
   let [room, setRoom] = useState("");
 
