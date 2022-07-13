@@ -22,7 +22,7 @@ let removeUser = (id) => {
   }
 
   users = users.filter((user) => user.id !== id);
-  return user;
+  return { user };
 };
 
 let getUser = (id) => {

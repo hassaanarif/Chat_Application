@@ -2,6 +2,11 @@ import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import io from "socket.io-client";
+import ChatInput from "./ChatInput/ChatInput";
+import InfoBar from "./InfoBar/InfoBar";
+import MessageArea from "./MessageArea/MessageArea";
+
+import "./Chat.css";
 
 let socket;
 
@@ -12,13 +17,13 @@ function Chat() {
   let [messages, setMessages] = useState([]);
 
   let location = useLocation();
-  let data = queryString.parse(location.search);
 
   const ENDPOINT = "localhost:5000";
 
   useEffect(() => {
     socket = io(ENDPOINT);
 
+    let data = queryString.parse(location.search);
     setName(data.name);
     setRoom(data.room);
 
@@ -34,10 +39,9 @@ function Chat() {
 
   useEffect(() => {
     socket.on("welcomeMessage", (message) => {
-      console.log(message);
       setMessages([...messages, message]);
     });
-  });
+  }, [messages]);
 
   let sendMessage = (e) => {
     e.preventDefault();
@@ -46,19 +50,23 @@ function Chat() {
     }
   };
 
-  // console.log({ name, room, message, messages });
+  let closeChat = () => {
+    console.log("Chat Closed");
+    socket.disconnect();
+    socket.off();
+  };
 
   return (
-    <div className="outerContainer">
-      <div className="container">
-        <input
-          type="text"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          onKeyPress={(e) => (e.key === "Enter" ? sendMessage(message) : null)}
-        />
-      </div>
-    </div>
+    <section className="ChatComponent">
+      <section className="ChatContainer">
+        <InfoBar room={room} closeChat={closeChat} />
+        <MessageArea messages={messages} />
+        <ChatInput message={message} sendMessage={sendMessage} />
+      </section>
+      <section className="ChatInfoContainer">
+        <h1>Chat Info will go here</h1>
+      </section>
+    </section>
   );
 }
 
