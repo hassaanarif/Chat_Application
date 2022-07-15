@@ -24,7 +24,9 @@ function MessageArea({ messages, name }) {
 					</div>
 				);
 			})}
-			<div ref={lastDiv} className="ScrollToBottom"></div>
+			<div ref={lastDiv} className="ScrollToBottom">
+				{" "}
+			</div>
 		</div>
 	);
 }
