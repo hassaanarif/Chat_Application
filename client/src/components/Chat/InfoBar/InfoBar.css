@@ -1,18 +1,18 @@
 .InfoBarContainer {
-  align-items: center;
-  background-color: rgb(163, 35, 236);
-  color: #fff;
-  display: flex;
-  font-size: 1rem;
-  font-weight: bold;
-  height: 40px;
-  justify-content: space-between;
-  padding: 0.5rem;
-  width: 100%;
+	align-items: center;
+	background-color: rgb(163, 35, 236);
+	color: rgb(255, 255, 255);
+	display: flex;
+	font-size: 0.9rem;
+	font-weight: bold;
+	height: 40px;
+	justify-content: space-between;
+	padding: 0.5rem;
+	width: 100%;
 }
 
 .InfoBar__Close {
-  cursor: pointer;
-  color: #fff;
-  text-decoration: none;
+	cursor: pointer;
+	color: #fff;
+	text-decoration: none;
 }
