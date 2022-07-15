@@ -1,13 +1,14 @@
 .InfoBarContainer {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100fr;
-  font-weight: bold;
-  font-size: 1.2rem;
+  background-color: rgb(163, 35, 236);
   color: #fff;
-  background-color: blueviolet;
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 40px;
+  justify-content: space-between;
   padding: 0.5rem;
+  width: 100%;
 }
 
 .InfoBar__Close {

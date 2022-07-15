@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origins: ["http://192.168.137.1:3000", "http://localhost:3000", "http://10.10.10.168:3000/"],
     methods: ["GET", "POST"],
   },
 });
@@ -25,12 +25,12 @@ io.on("connection", (socket) => {
 
     socket.emit("welcomeMessage", {
       user: "Admin",
-      message: `${user.name}, Welcome to the Room ${user.room}`,
+      message: `${name}, Welcome to the ${room}`,
     });
 
-    socket.broadcast.to(user.room).emit("welcomeMessage", {
+    socket.broadcast.to(user.room).emit("message", {
       user: "Admin",
-      message: `${user.name} has joined!`,
+      message: `${name} has joined!`,
     });
 
     socket.join(user.room);
@@ -38,9 +38,9 @@ io.on("connection", (socket) => {
     callback(`User ${user.name} has joined!`);
   });
 
-  socket.on("sendMessage", (message, callback) => {
+  socket.on("sendMessage", ({ name, message }, callback) => {
     let user = getUser(socket.id);
-    io.to(user.room).emit("message", { user: user.name, message });
+    io.in(user.room).emit("message", { user: name, message });
     callback();
   });
 
@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
     let { user } = removeUser(socket.id);
 
     if (user) {
-      socket.broadcast.to(user.room).emit("leaveMessage", {
+      socket.broadcast.to(user.room).emit("message", {
         user: "Admin",
         message: `${user.name} has left!`,
       });

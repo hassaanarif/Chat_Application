@@ -1,0 +1,39 @@
+.ChatInputContainer {
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+}
+
+.ChatInput__Input {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+  font-size: 1rem;
+  height: 100%;
+  outline: none;
+  padding: 10px;
+  width: 95%;
+}
+
+.ChatInput__Button {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: none;
+  font-size: 30px;
+  outline: none;
+  text-align: center;
+  width: 5%;
+}
+
+.ChatInput__Button:enabled:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .ChatInput__Input {
+    width: 85%;
+  }
+  .ChatInput__Button {
+    width: 15%;
+  }
+}
