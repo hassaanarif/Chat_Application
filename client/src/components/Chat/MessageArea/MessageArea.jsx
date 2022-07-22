@@ -7,15 +7,23 @@ function MessageArea({ messages, name }) {
 	useEffect(() => {
 		lastDiv.current.scrollIntoView({ behavior: "smooth" });
 	});
-
 	return (
 		<div className="MessageAreaContainer">
 			{messages.map(({ user, message }, index) => {
 				return (
-					<div key={index} className={`MessageWrapper ${user === name ? "MessageWrapper--Right" : user === "Admin" ? "MessageWrapper--Center" : "MessageWrapper--Left"}`}>
+					<div
+						key={index}
+						className={`MessageWrapper ${
+							user === name ? "MessageWrapper--Right" : user === "Admin" ? "MessageWrapper--Center" : "MessageWrapper--Left"
+						}`}
+					>
 						<div
 							className={`MessageWrapper__Message ${
-								user === name ? "MessageWrapper__Message--Right" : user === "Admin" ? "MessageWrapper__Message--Center" : "MessageWrapper__Message--Left"
+								user === name
+									? "MessageWrapper__Message--Right"
+									: user === "Admin"
+									? "MessageWrapper__Message--Center"
+									: "MessageWrapper__Message--Left"
 							}`}
 						>
 							{message}

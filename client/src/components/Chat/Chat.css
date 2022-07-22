@@ -1,20 +1,16 @@
 .ChatComponent {
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  width: 100%;
+	display: flex;
+	flex-direction: row;
+	height: 100vh;
+	width: 100%;
 }
 
 .ChatContainer {
-  border: 4px solid rgb(255, 5, 130);
-  display: flex;
-  flex-direction: column;
-  width: 70%;
+	display: flex;
+	flex-direction: column;
+	width: 70%;
 }
 
 .ChatInfoSideBarContainer {
-  border: 4px solid rgb(0, 0, 0);
-  width: 30%;
-  background-color: rgb(0, 223, 204);
-  color: rgb(0, 21, 49);
+	width: 30%;
 }

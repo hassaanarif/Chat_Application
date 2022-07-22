@@ -15,10 +15,11 @@ function Chat() {
 	let [room, setRoom] = useState("");
 	let [message, setMessage] = useState("");
 	let [messages, setMessages] = useState([]);
+	let [users, setUsers] = useState([]);
 
 	let location = useLocation();
 
-	const ENDPOINT = "http://192.168.137.1:5000";
+	const ENDPOINT = "localhost:5000";
 
 	useEffect(() => {
 		socket = io(ENDPOINT);
@@ -29,6 +30,8 @@ function Chat() {
 			if (returnMessage.error) {
 				console.log(returnMessage.error);
 			}
+
+			setUsers(returnMessage);
 		});
 
 		socket.on("welcomeMessage", (message) => setMessages([...messages, message]));
@@ -48,13 +51,18 @@ function Chat() {
 		});
 	}, [messages]);
 
+	useEffect(() => {
+		socket.on("roomData", (users) => {
+			setUsers(users);
+		});
+	}, [users]);
+
 	let sendMessage = (e) => {
 		e.preventDefault();
 
 		if (message) {
 			socket.emit("sendMessage", { name, message }, () => {
 				setMessage("");
-				// setMessages([...messages, { user: name, message }]);
 			});
 		}
 	};
@@ -74,7 +82,7 @@ function Chat() {
 			</section>
 
 			<section className="ChatInfoSideBarContainer">
-				<ChatInfoSideBar />
+				<ChatInfoSideBar users={users} room={room} />
 			</section>
 		</section>
 	);

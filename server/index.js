@@ -33,9 +33,12 @@ io.on("connection", (socket) => {
 			message: `${name} has joined!`,
 		});
 
+		let totalUsersInRoom = getUserInRoom(user.room);
+		io.in(user.room).emit("roomData", totalUsersInRoom);
+
 		socket.join(user.room);
 
-		callback(`User ${user.name} has joined!`);
+		callback(totalUsersInRoom);
 	});
 
 	socket.on("sendMessage", ({ name, message }, callback) => {
@@ -53,6 +56,9 @@ io.on("connection", (socket) => {
 				user: "Admin",
 				message: `${user.name} has left!`,
 			});
+
+			let users = getUserInRoom(user.room);
+			io.in(user.room).emit("roomData", users);
 		}
 	});
 });

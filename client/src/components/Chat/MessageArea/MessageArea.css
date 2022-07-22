@@ -54,6 +54,7 @@
 .MessageWrapper__Sender {
 	font-size: 0.7rem;
 	font-weight: bold;
+	color: rgb(223, 223, 223);
 }
 
 .ScrollToBottom {

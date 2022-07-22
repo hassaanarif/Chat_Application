@@ -1,0 +1,27 @@
+.ChatInfoContainer {
+	align-items: center;
+	background-color: aqua;
+	border: 10px solid rgb(71, 0, 59);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	height: 100vh;
+	padding: 5px;
+}
+
+.ChatInfoContainer__Room {
+	font-size: 2rem;
+	font-weight: bold;
+}
+
+.ChatInfoContainer__NoOfUsers {
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.ChatInfoContainer__Users {
+	text-transform: capitalize;
+	font-size: 1rem;
+	font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+	color: rgb(71, 0, 59);
+}

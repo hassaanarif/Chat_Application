@@ -1,6 +1,6 @@
 .InfoBarContainer {
 	align-items: center;
-	background-color: rgb(163, 35, 236);
+	background-color: rgb(255, 132, 83);
 	color: rgb(255, 255, 255);
 	display: flex;
 	font-size: 0.9rem;
@@ -13,6 +13,6 @@
 
 .InfoBar__Close {
 	cursor: pointer;
-	color: #fff;
+	color: rgb(255, 255, 255);
 	text-decoration: none;
 }
